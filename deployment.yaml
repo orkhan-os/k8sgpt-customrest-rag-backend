@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sgpt-customrest
+  namespace: k8sgpt-operator-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8sgpt-customrest
+  template:
+    metadata:
+      labels:
+        app: k8sgpt-customrest
+    spec:
+      containers:
+        - name: k8sgpt-customrest
+          image: ghcr.io/orkhanorganization/k8sgpt-rag-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api-key
+                  key: OPENAI_API_KEY
+          envFrom:
+            - configMapRef:
+                name: k8sgpt-customrest-config
+

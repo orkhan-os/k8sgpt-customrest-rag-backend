@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8sgpt-customrest
+  namespace: k8sgpt-operator-system
+  labels:
+    app: k8sgpt-customrest
+spec:
+  selector:
+    app: k8sgpt-customrest
+  ports:
+    - protocol: TCP
+      port: 8000      
+      targetPort: 8000 
+  type: ClusterIP
+

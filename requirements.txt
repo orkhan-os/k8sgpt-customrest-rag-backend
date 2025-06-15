@@ -1,0 +1,8 @@
+qdrant-haystack
+sentence-transformers>=4.1.0
+haystack-ai
+markdown-it-py
+mdit_plain
+pypdf
+fastapi
+uvicorn
